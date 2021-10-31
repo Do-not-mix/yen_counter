@@ -22,12 +22,15 @@
         var query = location.search;
         query = query.split("=")[1];//前のページで指定した目標金額
         
-        document.write('<br \/>')
+        document.write('<br \/>');
         document.write('目標金額まで');
         document.write(query); 
         document.write('円です');
         
-        document.write(typeof(query))
+        document.write('<br \/>');
+        document.write(typeof(query));
+        document.write('<br \/>');
+        document.writ(Object.prototype.toString(query));
        
         
         // More API functions here:
