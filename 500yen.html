@@ -82,10 +82,9 @@
         function identification_yen(n){
             a=0;
             b=0;
-            m=n+1
-            if (m/4<=1){
+            if (n/4<=1){
                 a=100;
-                if (m%4==1 || m%4==2){
+                if (n%4==1 || n%4==2){
                     b=5*a;
                 }
                 else{
@@ -93,9 +92,9 @@
                 }
             }
 
-            else if (m/4>1 && m/4<=2){
+            else if (n/4>1 && n/4<=2){
                 a=10;
-                if (m%4==1 || m%4==2){
+                if (n%4==1 || n%4==2){
                     b=5*a;
                 }
                 else{
@@ -103,9 +102,9 @@
                 }
             }
             
-            else if (m/4>2 && m/4<=3){
+            else if (n/4>2 && n/4<=3){
                 a=1;
-                if (m%4==1 || m%4==2){
+                if (n%4==1 || n%4==2){
                     b=5*a;
                 }
                 else{
@@ -122,13 +121,19 @@
 
         // run the webcam image through the image model;
         async function predict() {
-            const prediction = await model.predict(webcam.canvas);
+            
             var yen = 0;
-            for (let i = 0; i < maxPredictions; i++) {
+            for (let i = 1; i < maxPredictions+1; i++) {
                 if(prediction[i].probability.toFixed(2)>0.9){
                     yen = identification_yen(i);
                     
                 }
+                const classPrediction =
+                    prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                labelContainer.childNodes[i].innerHTML = classPrediction;
+            }
+            
+            for (let i = 0; i < maxPredictions; i++) {
                 const classPrediction =
                     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
                 labelContainer.childNodes[i].innerHTML = classPrediction;
@@ -149,7 +154,7 @@
             window.location.href = '500yen.html?yen=' + query; // + (query - yen);
         }
         
-        yen=Number(predict())
+        yen=predict()
         
         document.write('<br \/>');
         document.write(yen);
