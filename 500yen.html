@@ -124,7 +124,7 @@
             
             var yen = 0;
             for (let i = 1; i < maxPredictions+1; i++) {
-                if(prediction[i].probability.toFixed(2)>0.9){
+                if(prediction[i-1].probability.toFixed(2)>0.9){
                     yen = identification_yen(i);
                     
                 }
