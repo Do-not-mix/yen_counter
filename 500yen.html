@@ -138,10 +138,11 @@
         }
         
         function OK(){
-            var yen = predict();
+            var yen = Number(predict());
             
             console.log("yen" + yen);
-            window.location.href = '500yen.html?yen=' + yen; // + (query - yen);
+            query=query-yen
+            window.location.href = '500yen.html?yen=' + query; // + (query - yen);
         }
 
     </script>
