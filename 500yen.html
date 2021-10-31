@@ -143,15 +143,17 @@
             console.log("yen" + yen);
             query=query-yen;
             
-            document.write('<br \/>');
-            document.write(query);
-            document.write('<br \/>');
-            document.write(typeof(query));
-            document.write('<br \/>');
-            document.write(Object.prototype.toString(query));
+            
             
             window.location.href = '500yen.html?yen=' + query; // + (query - yen);
         }
+        
+        document.write('<br \/>');
+        document.write(query);
+        document.write('<br \/>');
+        document.write(typeof(query));
+        document.write('<br \/>');
+        document.write(Object.prototype.toString(query));
 
     </script>
 </body>
