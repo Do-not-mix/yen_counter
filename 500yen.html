@@ -80,10 +80,10 @@
         var sum_yen=0
         
         function identification_yen(n){
-            a=0
-            b=0
+            a=0;
+            b=0;
             if (n/4<1){
-                a=100
+                a=100;
                 if (n%4==0 || n%4==1){
                     b=5*a;
                 }
@@ -141,7 +141,15 @@
             var yen = Number(predict());
             
             console.log("yen" + yen);
-            query=query-yen
+            query=query-yen;
+            
+            document.write('<br \/>');
+            document.write(query);
+            document.write('<br \/>');
+            document.write(typeof(query));
+            document.write('<br \/>');
+            document.write(Object.prototype.toString(query));
+            
             window.location.href = '500yen.html?yen=' + query; // + (query - yen);
         }
 
