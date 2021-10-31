@@ -82,7 +82,8 @@
         function identification_yen(n){
             a=0;
             b=0;
-            if (n/4<1){
+            n=n+1
+            if (n/4<=1){
                 a=100;
                 if (n%4==0 || n%4==1){
                     b=5*a;
@@ -92,7 +93,7 @@
                 }
             }
 
-            else if (n/4>=1 && n/4<2){
+            else if (n/4>1 && n/4<=2){
                 a=10;
                 if (n%4==0 || n%4==1){
                     b=5*a;
@@ -102,7 +103,7 @@
                 }
             }
             
-            else if (n/4>=2 && n/4<3){
+            else if (n/4>2 && n/4<=3){
                 a=1;
                 if (n%4==0 || n%4==1){
                     b=5*a;
@@ -126,14 +127,14 @@
             for (let i = 0; i < maxPredictions; i++) {
                 if(prediction[i].probability.toFixed(2)>0.9){
                     yen = identification_yen(i);
+                    
                 }
-            }
-
-            for (let i = 0; i < maxPredictions; i++) {
                 const classPrediction =
                     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
                 labelContainer.childNodes[i].innerHTML = classPrediction;
             }
+
+      
             return yen
         }
         
