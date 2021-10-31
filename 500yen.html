@@ -122,7 +122,7 @@
 
         // run the webcam image through the image model;
         async function predict() {
-            
+            const prediction = await model.predict(webcam.canvas);
             var yen = 0;
             for (let i = 0; i < maxPredictions; i++) {
                 if(prediction[i].probability.toFixed(2)>0.9){
