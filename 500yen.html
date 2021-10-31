@@ -142,7 +142,8 @@
         }
         
         function OK(){
-            var yen = Number(predict());
+            var c=predict().toString();
+            var yen = Number(c);
             
             console.log("yen" + yen);
             query=query-yen;
