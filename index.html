@@ -6,24 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
 <body>
-    
-    目標金額を入力しして
-
     <div class = "goal_yen_counter">
         <label for="goal_yen">目標金額:</label>
         <input id="goal_yen" type="number" name="goal_yen" value="0"></input>
-        <button type="button" onclick="yenyen()">submit</button>
+        <button type="button" onclick="yenyen()">Submit</button>
     </div>
-    
+
+   
     <script type="text/javascript">
-
-        async function yenyen() {
-            var num =document.getElementById("goal_yen").value;
-            window.location.href = '500yen.html?name='+num;
+        function yenyen(){
+            var num = document.getElementById("goal_yen").value;
+            window.location.href = '500yen.html?yen=' + num;
         }
-
     </script>
 
 </body>
