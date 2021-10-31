@@ -154,8 +154,8 @@
             window.location.href = '500yen.html?yen=' + query; // + (query - yen);
         }
         
-        var c=predict();
-        var d=Integer.valueOf(String.valueOf(request.getAttribute(c)));
+        var c=string(predict());
+        var d=parseInt(c);
         var yen = d;
         
         document.write('<br \/>');
