@@ -8,6 +8,8 @@
 </head>
 <body>
     
+    
+    
     <div>Teachable Machine Image Model</div>
     <button type="button" onclick="init()">Start</button>
     <div id="webcam-container"></div>
@@ -22,6 +24,8 @@
     <script type="text/javascript">
         var query=location.search;
         query=query.split('=')[1];
+        
+    <p>目標金額まであと <var>query</var></p>
         // More API functions here:
     // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
@@ -66,8 +70,6 @@
         
         //新しい
 
-        var count =0
-        var sum_yen=0
 
         function identification_yen(n){
             a=0
@@ -130,6 +132,13 @@
         async function predict() {
             // predict can take in an image, video or canvas html element
             const prediction = async model.predict(webcam.canvas);  
+            
+            for (let i = 0; i < maxPredictions; i++) {
+                yen = 0
+                if(prediction[i].probability.toFixed(2)>0.9){
+                    yen=identification_yen(i)
+                }
+            
             for (let i = 0; i < maxPredictions; i++) {
                 const classPrediction =
                     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
