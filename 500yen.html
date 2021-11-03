@@ -81,10 +81,8 @@
 
         var count =0
         var sum_yen=0
-        async function predict() {
-            const prediction = await model.predict(webcam.canvas);
-            
-            function identification_yen(n){
+
+        function identification_yen(n){
                 var a=0
                 var b=0
                 if (n/4<=1){
@@ -120,27 +118,9 @@
                 return b
 
             }
-        
-            function check_yen_array(){
-                var a=[]
-                var flag = false;
-                for (let i = 0; i < maxPredictions; i++) {
-                   j=i+1
-                   if(prediction[i].probability.toFixed(2)>0.9){
-                       a.push ( identification_yen(j));
-                   }
-                    if (a[a.length-1] = a[a.length-2] || a.length>25){
-                        if (a.length>25){
-                            return a[a.length-1] 
-                            a=[]
-                        }
-                        //flag = true
-                        //continue;
-                    }else{
-                        a = []
-                    }
-                }
-            }
+
+        async function predict() {
+            const prediction = await model.predict(webcam.canvas);
             
             for (let i = 0; i < maxPredictions; i++) {
                 const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
@@ -151,16 +131,13 @@
                 j=i+1
                 if(prediction[i].probability.toFixed(2)>0.9){
                     yen = identification_yen(j);
-                }
-            }
-            
-            if (check_yen_array()>0) {
-                    var yen=check_yen_array();  
                     query=query-yen;
                     window.location.href = '500yen.html?yen=' + yen; // + (query - yen);
+
+                }
             }
-            console.log(check_yen_array())
-            console.log(typeof(check_yen_array()))
+            console.log(query)
+            console.log(typeof(query))
             
         }
         
