@@ -152,22 +152,24 @@
                     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
                 labelContainer.childNodes[i].innerHTML = classPrediction;
             }
-        }
-        
-        for (let i = 0; i < maxPredictions; i++) {
+            for (let i = 0; i < maxPredictions; i++) {
                 j=i+1
                 if(prediction[i].probability.toFixed(2)>0.9){
                     yen = identification_yen(j);
                 }
-        }
+            }
             
-        if (check_yen_array()>0) {
-                var yen=check_yen_array();  
-                query=query-yen;
-                window.location.href = '500yen.html?yen=' + yen; // + (query - yen);
+            if (check_yen_array()>0) {
+                    var yen=check_yen_array();  
+                    query=query-yen;
+                    window.location.href = '500yen.html?yen=' + yen; // + (query - yen);
+            }
+            console.log("yen" + check_yen_array())
         }
         
-        console.log("yen" + check_yen_array())
+        
+        
+        
         
         /*
         
