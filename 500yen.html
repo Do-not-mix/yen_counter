@@ -31,8 +31,7 @@
         document.write(Object.prototype.toString(query));
         
         var array1=[];
-        
-       
+        var a=[];
         
         // More API functions here:
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
@@ -76,8 +75,6 @@
             webcam.update(); // update the webcam frame
             await predict();
             
-            var a=[]
-            a.push(predict());
             if (a[a.length-1] = a[a.length-2] || a.length>25){
                         if (a.length>25){
                             var yen=a[a.length-1];  
@@ -138,19 +135,15 @@
             const prediction = await model.predict(webcam.canvas);
             
             for (let i = 0; i < maxPredictions; i++) {
+                j=i+1
                 const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
                 labelContainer.childNodes[i].innerHTML = classPrediction;
-            }
-            
-            for (let i = 0; i < maxPredictions; i++) {
-                j=i+1
                 if(prediction[i].probability.toFixed(2)>0.9){
                     yen = identification_yen(j);
-                    return yen;
-                    
-
+                    a.push(yen)
                 }
             }
+            
             console.log(query)
             console.log(typeof(query))
             
