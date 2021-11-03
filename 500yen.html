@@ -138,6 +138,7 @@
                 j=i+1
                 const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
                 labelContainer.childNodes[i].innerHTML = classPrediction;
+                
                 if(prediction[i].probability.toFixed(2)>0.9){
                     yen = identification_yen(j);
                     a.push(yen)
@@ -146,7 +147,8 @@
             
             console.log(query)
             console.log(typeof(query))
-            
+            console.log(a)
+            console.log(typeof(a))
         }
 
 
