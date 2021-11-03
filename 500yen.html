@@ -71,33 +71,13 @@
             }
         }
         
-        function check_yen_array(){
-            var a=[]
-            var flag = false;
-            for (let i = 0; i < maxPredictions; i++) {
-                   j=i+1
-                   if(prediction[i].probability.toFixed(2)>0.9){
-                       a.push ( identification_yen(j));
-                   }
-                    if (a[a.length-1] = a[a.length-2] || a.length>25){
-                        if (a.length>25){
-                            return a[a.length-1] 
-                            a=[]
-                        }
-                        //flag = true
-                        //continue;
-                    }else{
-                        a = []
-                    }
-            }
-        }
 
         async function loop() {
             webcam.update(); // update the webcam frame
             await predict();
             
             var a=[]
-            a.push(pedict());
+            a.push(await pedict());
             if (a[a.length-1] = a[a.length-2] || a.length>25){
                         if (a.length>25){
                             var yen=a[a.length-1];  
