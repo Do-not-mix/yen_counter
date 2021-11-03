@@ -71,9 +71,45 @@
             }
         }
         
+        function check_yen_array(){
+            var a=[]
+            var flag = false;
+            for (let i = 0; i < maxPredictions; i++) {
+                   j=i+1
+                   if(prediction[i].probability.toFixed(2)>0.9){
+                       a.push ( identification_yen(j));
+                   }
+                    if (a[a.length-1] = a[a.length-2] || a.length>25){
+                        if (a.length>25){
+                            return a[a.length-1] 
+                            a=[]
+                        }
+                        //flag = true
+                        //continue;
+                    }else{
+                        a = []
+                    }
+            }
+        }
+
         async function loop() {
             webcam.update(); // update the webcam frame
             await predict();
+            
+            var a=[]
+            a.push(pedict());
+            if (a[a.length-1] = a[a.length-2] || a.length>25){
+                        if (a.length>25){
+                            var yen=a[a.length-1];  
+                            query=query-yen;
+                            window.location.href = '500yen.html?yen=' + yen; // + (query - yen);               
+                            a=[]
+                        }else{
+                        a = []
+                    }
+            }
+
+
             window.requestAnimationFrame(loop);
         }
         
@@ -119,7 +155,7 @@
 
             }
 
-        async function predict() {
+        async function predict() {  //25枚画像がたまったら次の識別に移るようにしたい
             const prediction = await model.predict(webcam.canvas);
             
             for (let i = 0; i < maxPredictions; i++) {
@@ -131,8 +167,8 @@
                 j=i+1
                 if(prediction[i].probability.toFixed(2)>0.9){
                     yen = identification_yen(j);
-                    query=query-yen;
-                    window.location.href = '500yen.html?yen=' + yen; // + (query - yen);
+                    return yen;
+                    
 
                 }
             }
