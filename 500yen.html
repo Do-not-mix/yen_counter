@@ -71,33 +71,7 @@
             }
         }
         
-
-        async function loop() {
-            webcam.update(); // update the webcam frame
-            await predict();
-            
-            var a=[]
-            a.push(await pedict());
-            if (a[a.length-1] = a[a.length-2] || a.length>25){
-                        if (a.length>25){
-                            var yen=a[a.length-1];  
-                            query=query-yen;
-                            window.location.href = '500yen.html?yen=' + yen; // + (query - yen);               
-                            a=[]
-                        }else{
-                        a = []
-                    }
-            console.log(a)
-            }
-
-
-            window.requestAnimationFrame(loop);
-        }
-        
         //新しい
-
-        var count =0
-        var sum_yen=0
 
         function identification_yen(n){
                 var a=0
@@ -157,9 +131,28 @@
             console.log(typeof(query))
             
         }
-        
-        
-        
+
+        async function loop() {
+            webcam.update(); // update the webcam frame
+            await predict();
+            
+            var a=[]
+            a.push(await pedict());
+            if (a[a.length-1] = a[a.length-2] || a.length>25){
+                        if (a.length>25){
+                            var yen=a[a.length-1];  
+                            query=query-yen;
+                            window.location.href = '500yen.html?yen=' + yen; // + (query - yen);               
+                            a=[]
+                        }else{
+                        a = []
+                    }
+            console.log(a)
+            }
+
+
+            window.requestAnimationFrame(loop);
+        }
 
         // run the webcam image through the image model;
         /*
