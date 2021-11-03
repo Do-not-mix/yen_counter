@@ -81,77 +81,93 @@
 
         var count =0
         var sum_yen=0
-        
-        function identification_yen(n){
-            var a=0
-            var b=0
-            if (n/4<=1){
-                a=100;
-                if (n%4==1 || n%4==2){
-                    b=5*a;
+        async function predict() {
+            const prediction = await model.predict(webcam.canvas);
+            
+            function identification_yen(n){
+                var a=0
+                var b=0
+                if (n/4<=1){
+                    a=100;
+                    if (n%4==1 || n%4==2){
+                        b=5*a;
+                    }
+                    else{
+                        b=1*a;
+                    }
                 }
-                else{
-                    b=1*a;
-                }
-            }
 
-            else if (n/4>1 && n/4<=2){
-                a=10;
-                if (n%4==1 || n%4==2){
-                    b=5*a;
+                else if (n/4>1 && n/4<=2){
+                    a=10;
+                    if (n%4==1 || n%4==2){
+                        b=5*a;
+                    }
+                    else{
+                        b=1*a;
+                    }
                 }
-                else{
-                    b=1*a;
+
+                else if (n/4>2 && n/4<=3){
+                    a=1;
+                    if (n%4==1 || n%4==2){
+                        b=5*a;
+                    }
+                    else{
+                        b=1*a;
+                    }
+                }
+
+                return b
+
+            }
+        
+            function check_yen_array(){
+                var a=[]
+                var flag = false;
+                for (let i = 0; i < maxPredictions; i++) {
+                   j=i+1
+                   if(prediction[i].probability.toFixed(2)>0.9){
+                       a.push ( identification_yen(j));
+                   }
+                    if (a[a.length-1] = a[a.length-2] || a.length>25){
+                        if (a.length>25){
+                            return a[a.length-1] 
+                            a=[]
+                        }
+                        //flag = true
+                        //continue;
+                    }else{
+                        a = []
+                    }
                 }
             }
             
-            else if (n/4>2 && n/4<=3){
-                a=1;
-                if (n%4==1 || n%4==2){
-                    b=5*a;
-                }
-                else{
-                    b=1*a;
+            for (let i = 0; i < maxPredictions; i++) {
+                const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                labelContainer.childNodes[i].innerHTML = classPrediction;
+            }
+            
+            for (let i = 0; i < maxPredictions; i++) {
+                j=i+1
+                if(prediction[i].probability.toFixed(2)>0.9){
+                    yen = identification_yen(j);
                 }
             }
-
-            return b
-
+            
+            if (check_yen_array()>0) {
+                    var yen=check_yen_array();  
+                    query=query-yen;
+                    window.location.href = '500yen.html?yen=' + yen; // + (query - yen);
+            }
+            
         }
         
-        function check_yen_array(){
-            var a=[]
-            var flag = false;
-            for (let i = 0; i < maxPredictions; i++) {
-               j=i+1
-               if(prediction[i].probability.toFixed(2)>0.9){
-                   a.push ( identification_yen(j));
-               }
-                if (a[a.length-1] = a[a.length-2] || a.length>25){
-                    if (a.length>25){
-                        return a[a.length-1] 
-                        a=[]
-                    }
-                    //flag = true
-                    //continue;
-                }else{
-                    a = []
-                }
-            }
-        }
+        
         
 
         // run the webcam image through the image model;
+        /*
         async function predict() {
-            const prediction = await model.predict(webcam.canvas);
-            var a=0
-            var b=0
-            
-            for (let i = 0; i < maxPredictions; i++) {
-                const classPrediction =
-                    prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-                labelContainer.childNodes[i].innerHTML = classPrediction;
-            }
             for (let i = 0; i < maxPredictions; i++) {
                 j=i+1
                 if(prediction[i].probability.toFixed(2)>0.9){
@@ -166,7 +182,7 @@
             }
             console.log("yen" + check_yen_array())
         }
-        
+        */
         
         
         
