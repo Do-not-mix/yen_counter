@@ -78,9 +78,8 @@
         }
 
         async function loop() {
-            webcam.update(); // update the webcam frame
-            
             while(true){
+                webcam.update(); // update the webcam frame
                 await predict();
                 yen=50;
                 if (a[a.length] <2){
