@@ -85,7 +85,7 @@
                 yen=50;
                 if (a[a.length] <2){
                     if (a[a.length-1] = a[a.length-2]){
-                        if (a.length>25){
+                        if (a.length>10){
                             var yen=a[a.length-1];  
                             query=query-yen;
                             window.location.href = '500yen.html?yen=' + yen; // + (query - yen);               
@@ -96,7 +96,7 @@
                         a = new Array();
                         }
                 }
-                setTimeout(1000);
+                setTimeout(10);
             }
 
             if(query<=0){
