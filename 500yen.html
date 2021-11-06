@@ -32,6 +32,7 @@
         
         var array1=[];
         var a=[];
+        var b=a.length;
         
         // More API functions here:
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
@@ -81,7 +82,6 @@
             while(true){
                 webcam.update(); // update the webcam frame
                 await predict();
-                var b = a.length
                 if (b < 2){
                     if (a[b-1] == a[b-2]){
                         if (b>10){
