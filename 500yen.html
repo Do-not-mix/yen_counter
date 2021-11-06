@@ -71,21 +71,34 @@
         }
         
         
+        function delay(n){
+            return new Promise(function(resolve){
+                setTimeout(resolve,n*1000);
+            });
+        }
+
         async function loop() {
             webcam.update(); // update the webcam frame
-            await predict();
             
-            if (a[a.length-1] = a[a.length-2] || a.length>25){
-                        if (a.length>25){
-                            var yen=a[a.length-1];  
-                            query=query-yen;
-                            window.location.href = '500yen.html?yen=' + yen; // + (query - yen);               
-                            a=[]
-                        }else{
-                        a = []
+            while(true){
+                await predict();
+                if (a[a.length-1] = a[a.length-2]){
+                    if (a.length>25){
+                        var yen=a[a.length-1];  
+                        query=query-yen;
+                        window.location.href = '500yen.html?yen=' + yen; // + (query - yen);               
+                        a=new Array();
+                        break;
+                    }else{
+                        a = new Array();
                     }
+                setTimeout(50);
+                }
             }
 
+            if(query<=0){
+                window.location.href = '100yen.html';
+            }
 
             window.requestAnimationFrame(loop);
         }
