@@ -81,6 +81,19 @@
             while(true){
                 webcam.update(); // update the webcam frame
                 await predict();
+                var b = a.length
+                if (b < 2){
+                    if (a[b-1] == a[b-2]){
+                        if (b>10){
+                            query=query-a[b-1];
+                            window.location.href = '500yen.html?yen=' + query; // + (query - yen);               
+                            a=new Array();
+                            break;
+                        }
+                    }else{
+                        a.pop();
+                    }
+                }
                 setTimeout(100);
             }
 
@@ -142,21 +155,9 @@
                     a.push(identification_yen(j));
                 }
 
-                var b = a.length
-                if (b < 2){
-                    if (a[b-1] == a[b-2]){
-                        if (b>10){
-                            query=query-a[b-1];
-                            window.location.href = '500yen.html?yen=' + query; // + (query - yen);               
-                            a=new Array();
-                            break;
-                    }
-                    }else{
-                        a = new Array();
-                        }
-                }
+                
             }
-            }
+        }
             
             
             console.log(query)
