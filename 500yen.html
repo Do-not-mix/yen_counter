@@ -81,10 +81,11 @@
             while(true){
                 webcam.update(); // update the webcam frame
                 await predict();
-                if (a[a.length] <2){
-                    if (a[a.length-1] = a[a.length-2]){
-                        if (a.length>10){
-                            var yen=a[a.length-1];  
+                var b = a.length
+                if (b <2){
+                    if (a[b-1] = a[b-2]){
+                        if (b>10){
+                            var yen=a[b-1];  
                             query=query-yen;
                             window.location.href = '500yen.html?yen=' + yen; // + (query - yen);               
                             a=new Array();
