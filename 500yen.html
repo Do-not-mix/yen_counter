@@ -154,8 +154,7 @@
                 labelContainer.childNodes[i].innerHTML = classPrediction;
                 
                 if(prediction[i].probability.toFixed(2)>0.9){
-                    yen = identification_yen(j);
-                    a.push(yen)
+                    a.push(identification_yen(j));
                 }
             }
             
@@ -164,14 +163,7 @@
             console.log(typeof(query))
             console.log(a)
             console.log(typeof(a))
-            document.write('<br \/>');
-            document.write(query);
-            document.write('<br \/>');
-            document.write(a);
-            document.write('<br \/>');
-            document.write(typeof(query));
-            document.write('<br \/>');
-            document.write(typeof(a));
+            
             
 
         }
