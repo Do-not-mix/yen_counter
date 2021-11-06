@@ -7,8 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <script type = "text/javascript">
-    document.write('目標金額に達しました');
-    </script>
+    <div>目標金額に達しました</div>
 </body>
 </html>
